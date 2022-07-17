@@ -1,0 +1,21 @@
+
+Mint-My-Files Database and storage info
+
+ADD DIAGRAM OVERVIEW HERE
+
+We use multiple databases and storage in the solution, it all depends on what type of transactions are taking place.
+
+- MongoDB: user profile, transactions, app data, user files, Metadata, etc.   
+           GridFS optional usage for larger files.
+- Moralis Database: wallet login / web3 transactions / blockchain cahced data
+- Tatum Database: wallet login / web3 transactions / blockchain cahced data
+
+
+## MongoDB Database & S3 Storage
+
+![image](https://user-images.githubusercontent.com/3756707/179406034-cc5ab969-fc25-4d69-aaa8-a575e494b026.png)
+
+
+
+
+ADD MORE IMAGES HERE
