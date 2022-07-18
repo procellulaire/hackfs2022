@@ -1,0 +1,51 @@
+Skip to content
+Search or jump to…
+Pulls
+Issues
+Marketplace
+Explore
+ 
+@procellulaire 
+procellulaire
+/
+hackfs-priv-mint-my-files
+Private
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+More
+hackfs-priv-mint-my-files/moralis-info.txt
+@procellulaire
+procellulaire Create moralis-info.txt
+…
+Latest commit 2c9ba74 4 minutes ago
+ History
+ 1 contributor
+32 lines (18 sloc)  756 Bytes
+
+
+Moralis Dapp Credentials
+Dapp URL:
+Application ID:
+Master Key:
+******watatatow*******
+
+Eth Goerli
+Polygon Mumbai
+Bsc Testnet
+
+ALL EVM API KEY *******************************
+Solana API KEY ************
+                
+                
+Moralis Database Instance 
+Mongodb :  ......
+
+white listed :  admin, servers ip, monitoring ip
+
+https://.......usemoralis.com:1234/apps/moralisDashboard/browser/_Session
+
