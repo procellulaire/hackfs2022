@@ -1,0 +1,22 @@
+
+we added DNS records to integrate with hosting provider
+
+We are using Cloudflare for domain  mintmyfile.com
+
+TXT
+argo
+7f18d3*************f5f4f2f
+
+
+
+TXT
+mintmyfile.com
+argo=7f18**********f4f2f
+
+A
+mintmyfile.com
+35.202.158.174
+
+CNAME
+www
+mintmyfile.com
