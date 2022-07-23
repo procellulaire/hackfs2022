@@ -1,0 +1,35 @@
+
+#Functionality 🛠
+IPFS Metadata Uploads
+Using axios lib, pointed at the API_URL you can upload files directly to IPFS.
+
+// upload to IPFS
+Promise.all(promiseArray).then(() => {
+  axios
+    .post(API_URL, ipfsArray, {
+      headers: {
+        "X-API-Key": API_KEY,
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+    })
+    .then((res) => {
+      // successfully uploaded file to IPFS
+      let fileCID = res.data[0].path.split("/")[4];
+      console.log("FILE CID:", fileCID);
+      // pass IPFS folder CID to compile metadata
+      uploadMetadata(
+        API_URL, // <-- this is in .env
+        API_KEY, // <-- this is in .env
+        fileCID,
+        totalFiles,
+        _formValues,
+      );
+    })
+    .catch((err) => {
+      setLoading(false);
+      setError(true);
+      setErrorMessage(err);
+      console.log(err);
+    });
+});
