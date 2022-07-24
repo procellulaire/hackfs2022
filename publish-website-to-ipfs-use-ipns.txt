@@ -1,0 +1,17 @@
+#How to host a simple one-page website on IPFS and link up a domain name:
+- upload file to IPFS
+- PIN uploaded file to IPFS gateway, obtain URL.
+- Use IPFS name publish , provide the obtained URL
+- Use Hosting provider DNS redirection to point to the obtained IPNS URL
+   (https://gateway.ipfs.io/ipns/.....)
+
+=================================================
+
+#How to host a website with multiple pages and external assets on IPFS.
+- Create Index.html , Pages , Images in one folder
+- upload folder to IPFS
+- PIN uploaded FOLDER to IPFS gateway, obtain URL.
+- Use IPFS name publish , provide the obtained URL of the Directory uploaded where the index.html is located
+- Use Hosting provider DNS redirection to point to the obtained IPNS URL
+   (https://gateway.ipfs.io/ipns/.....)
+
