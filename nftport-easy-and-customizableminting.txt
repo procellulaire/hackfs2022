@@ -1,0 +1,164 @@
+#Customizable minting
+POST
+https://api.nftport.xyz/v0/mints/customizable
+
+Easy mint automatically does :
+    1- Uploads the file to IPFS.
+    2- Creates a metadata file (JSON) with the file's name, description and URL and uploads it to IPFS.
+    3- Creates i.e. mints the NFT (with a reference to the metadata URI).
+
+Most of times we need more advanced Customizable Minting functionalities such as deploying other type of contracts for audio , video, gaming, 
+custom file storage, etc.  
+
+We need to do the NFT minting process step by step:
+
+    1- Deploy your own Smartcontract for Product NFT abd obtain new contract address 
+    2- Upload your file to IPFS and obtain the IPFS File Information
+    3- Create and upload your NFT metadata file to IPFS, obtain IPFS file info
+    4- Mint NFTs to your contract with https://api.nftport.xyz/v0/mints/customizable
+
+
+This minting consists of multiple steps and enables you to customize the whole minting flow for your exact needs.
+
+- First, you need contract_address using Deploy a contract for NFT products.
+- Secondly, you need metadata_uri using Upload metadata to IPFS.
+
+After minting, the NFT will appear in the mint_to_address wallet. 
+If you minted to your own wallet, you can also see the minted NFT
+on OpenSea in your profile after a few minutes.
+
+You can mint up to 100 NFTs for free per chain. Maximum supported filesize is 50MB. For higher limits, see pricing.
+
+Useful for:
+Minting to your own product contracts 
+
+------------------------------------------------------------------------------------------
+Steps:
+
+First we deploy the Smartcontract for Product NFT like in 
+https://docs.nftport.xyz/docs/nftport/b3A6Njg1NTI0MTI-deploy-a-contract-for-nft-products
+
+Here we see a sample , in the code we need to replace wallet by the current user wallet 
+
+------------------------------------------------------------------------------------------
+POST
+https://api.nftport.xyz/v0/contracts
+
+{
+  "chain": "polygon",
+  "name": "MINT-MY-FILES",
+  "symbol": "MMF1",
+  "owner_address": "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+  "metadata_updatable": true,
+  "type": "erc721",
+  "roles": [
+    {
+      "role": "mint",
+      "addresses": [
+        "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+        "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769"
+      ],
+      "freeze": false
+    }
+  ]
+}
+
+
+{
+  "response": "OK",
+  "chain": "polygon",
+  "transaction_hash": "0x063ee4c84517f4d537eb51136e5d4151ff089e7ac16e9e4e9947dd5f78c4c27d",
+  "transaction_external_url": "https://polygonscan.com/tx/0x063ee4c84517f4d537eb51136e5d4151ff089e7ac16e9e4e9947dd5f78c4c27d",
+  "owner_address": "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+  "type": "erc721",
+  "name": "MINT-MY-FILES",
+  "symbol": "MMF1"
+}
+
+
+================================
+
+
+Deploy a contract for NFT products
+    POST
+    https://api.nftport.xyz/v0/contracts
+    Deploys an ERC-721 or ERC-1155 smart contract where your can mint your NFTs on-demand. The supply of NFTs is not fixed; more can be minted into this contract at any point in the future. This is a required step if you wish to use Customizable minting as your NFTs will be minted into this contract.
+
+    As blockchains can take a few seconds up to a few minutes to sync, then after contract deployment, you can use the returned transaction_hash in Retrieve a deployed contract to get the contract_address.
+
+    You can deploy up to 5 contracts for free per chain. For higher limits, see pricing.
+
+    Useful for:
+    Deploying your own contracts so you easily can build custom products.
+
+
+Deploy an NFT collection contract
+POST
+https://api.nftport.xyz/v0/contracts/collections
+
+Deploys a fixed-supply ERC-721 smart contract, commonly used for launching NFT collections.
+
+As blockchains can take a few seconds up to a few minutes to sync, then after contract deployment, you can use the returned transaction_hash in Retrieve a deployed contract to get the contract_address.
+
+You can deploy up to 5 contracts for free on each of Polygon and Rinkeby, and max_supply is limited to less than or equal to 5,000 NFTs for collection contracts deployed on the Free plan. Ethereum contract deployments are available only on the Growth tier and you will be charged immediately on request and if the transaction fails for any reason the amount will be refunded. For details and limits, see
+
+
+1 created 
+
+{
+  "chain": "polygon",
+  "name": "MINT-MY-FILES",
+  "symbol": "MMF1",
+  "max_supply": 100,
+  "team_reserve": 0,
+  "mint_price": 0.1,
+  "tokens_per_mint": 10,
+  "owner_address": "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+  "treasury_address": "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+  "public_mint_start_date": "2022-07-22T00:00:00+00:00",
+  "metadata_updatable": true,
+  "base_uri": "",
+  "prereveal_token_uri": "ipfs://bafybeiddrqxazph6hc3rfge7cn6jijxzkunopggjuj46mseuxbimyzkdgi",
+  "presale_mint_start_date": "2022-07-08T11:30:48+00:00",
+  "presale_whitelisted_addresses": [
+    "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769"
+  ]
+}
+
+
+200 OK
+{
+  "response": "OK",
+  "chain": "polygon",
+  "transaction_hash": "0x7d2f52512f86cc443bd1dbaef70d129886f8b1b5b9328f62bd7f1716d0f4afd5",
+  "transaction_external_url": "https://polygonscan.com/tx/0x7d2f52512f86cc443bd1dbaef70d129886f8b1b5b9328f62bd7f1716d0f4afd5",
+  "owner_address": "0x4143c11caf01f9cb8ec9ae3225d53506c42e1769",
+  "name": "MINT-MY-FILES",
+  "symbol": "MMF1"
+}
+
+
+
+To get the deployed contract address, use Retrieve a deployed contract 
+ https://docs.nftport.xyz/docs/nftport/b3A6Njg1NTI0MTU-retrieve-a-deployed-contract
+List all your previously deployed collection contracts
+ https://docs.nftport.xyz/docs/nftport/b3A6Njg1NTI0MzI-list-all-your-deployed-collection-contracts
+
+
+
+==============================================================================================================================
+
+DOC reference
+
+
+https://docs.nftport.xyz/docs/nftport/ZG9jOjQ2NDA5NTU5-contract-comparison
+
+https://docs.nftport.xyz/docs/nftport/b3A6Njg1NTI0MTI-deploy-a-contract-for-nft-products
+https://docs.nftport.xyz/docs/nftport/b3A6Njg1NTI0MTQ-deploy-an-nft-collection-contract
+    
+  
+  HOW TO SELL ON OPENSEA
+  https://support.opensea.io/hc/en-us/articles/360063498333-How-do-I-list-an-NFT-to-sell-
+  
+  
+  
